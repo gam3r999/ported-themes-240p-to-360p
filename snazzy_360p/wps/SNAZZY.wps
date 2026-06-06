@@ -1,0 +1,199 @@
+#
+#      .oooooo..o ooooo      ooo       .o.        oooooooooooo  oooooooooooo oooooo   oooo 
+#     d8P'    `Y8 `888b.     `8'      .888.      d'""""""d888' d'""""""d888'  `888.   .8'  
+#     Y88bo.       8 `88b.    8      .8"888.           .888P         .888P     `888. .8'   
+#      `"Y8888o.   8   `88b.  8     .8' `888.         d888'         d888'       `888.8'    
+#          `"Y88b  8     `88b.8    .88ooo8888.      .888P         .888P          `888'     
+#     oo     .d8P  8       `888   .8'     `888.    d888'    .P   d888'    .P      888      
+#     8""88888P'  o8o        `8  o88o     o8888o .8888888888P  .8888888888P      o888o     
+#
+#               Version 3.03
+#               Misery  2025
+#                CC-BY-SA
+
+#__by Phil Graves
+#__based on Original Theme: SPAZZ by Chuck Lardo & Spinoff SNAZZ/SNAZZ2 by Jihoon Kim
+#__some elements & code altered from adwaitapod by even Dook
+#__licence  CC-BY-SA 4.0
+#__target resolution 320x240
+#__tested on iPod Video 5.5Gen
+#__last updated 2/14/2025
+
+
+#__WPS File
+
+
+#__Hide The Status Bar
+%wd
+
+#__Preload Fonts
+%Fl(2,12-KodeMono-SemiBold.fnt)
+%Fl(3,15-KodeMono-SemiBold.fnt)
+%Fl(4,22-KodeMono-SemiBold.fnt)
+%Fl(5,29-KodeMono-SemiBold.fnt)
+%Fl(6,72-KodeMono-Bold.fnt)
+
+#__Preload Images
+%xl(H,BatteryStatus.bmp,18)
+%xl(repeat,RepeatStatus.bmp,6)
+%xl(shuffle,ShuffleStatus.bmp,0,0)
+%xl(AlbumArt,AlbumArt.bmp,0,0)
+%xl(P,bb_rbd_123.bmp,3)
+%xl(PBB,pb_back.bmp,0,0)
+%xl(PB,pb.bmp,0,0)
+%xl(BBB,bb_back.bmp,0,0)
+%xl(BB,bb.bmp,0,0)
+%xl(VBB,vb_back.bmp,0,0)
+%xl(VB,vb.bmp,0,0)
+%xl(PBI,Playback_Icons.bmp,7)
+%xl(O,OffOn.bmp,36,0,2)
+%xl(A,album_icon.bmp,0,1,2)
+
+#__Show Main Display unless Hold Switch is on
+%?mh<%Vd(LockScreen)%?C<%Vd(LockScreenA)|%Vd(LockScreenB)>|%Vd(MainDisplay)%?bc<%Vd(batCharge)|%Vd(bat)>>
+
+#----------- Main Display ---------#
+
+#__Volume Text
+%Vl(MainDisplay,30,28,67,46,4)
+%ac%pv%Vs(invert)
+
+#__Volume Bar
+%Vl(MainDisplay,105,33,150,27,-)
+%pv(0,0,150,27,VB,backdrop,VBB)
+
+###__Hold
+#%Vl(holdBar,105,30,150,45,4)
+#%acLOCKED%Vs(invert)
+
+#__Shuffle
+%Vl(MainDisplay,262,27,70,16,2)
+SHF%?ps<%xd(O,2)|%xd(O)>
+
+#__Repeat
+%Vl(MainDisplay,262,49,70,16,2)
+%?mm<RPT%xd(O)|RPT%xd(O,2)|RP1%xd(O,2)|RND%xd(O,2)|A-B%xd(O,2)>
+
+#__Battery BAR
+%Vl(MainDisplay,-139,25,109,13,-)
+%bl(0,0,73,9,BB,backdrop,BBB)
+
+#__Battery Text Percent
+%Vl(bat,-139,42,109,25,3)
+%ac%t(8)%xd(P) %bl%%%Vs(invert);%ac%?if(%bt, =, -1)<%t(0)|%t(8)%bt%Vs(invert)>;%t(8)%ac%xd(P)  %?cf<%cH:%cM%Vs(invert)|%?cl<1|2|3|4|5|6|7|8|9|10|11|12>:%cM%cP%Vs(invert)>
+%Vl(batCharge,-139,42,109,25,3)
+%ac%t(8)CHARGING%Vs(invert);%t(8)%ac%xd(P,2) %bl%%%Vs(invert);%t(8)%ac%xd(P,2)  %?cf<%cH:%cM%Vs(invert)|%?cl<1|2|3|4|5|6|7|8|9|10|11|12>:%cM%cP%Vs(invert)>
+
+#__Track Progress Bar
+%Vl(MainDisplay,30,76,420,1,-)
+%dr(0,0,420,1)
+%Vl(MainDisplay,30,78,420,7,-)
+%pb(0,0,420,7,PBB,slider,PB)
+%Vl(MainDisplay,30,85,420,1,-)
+%dr(0,0,420,1)
+
+#__Artist
+%Vl(MainDisplay,30,99,310,48,5)
+%al%s%?ia<%ia|NO TAG>
+
+#__Title/Album Indicator
+%Vl(MainDisplay,30,150,19,25,-)
+%t(8)%xd(Aa);%t(8)%?id<%xd(Ab)|%xd(Aa)>
+
+#__Track Title & Album Name
+%Vl(MainDisplay,52,148,285,25,3)
+%al%s%?it<%t(8)%it;%t(8)%id;|%fn>
+
+#__Channels
+%Vl(MainDisplay,-139,108,109,25,3)
+%ac%?St(channels)<STEREO|MONO|CUSTOM|LEFT|RIGHT|KARAOKE>
+
+#__File Info
+%Vl(MainDisplay,-139,138,109,34,4)
+%t(8)%ac%?fc<MP1|MP2|MP3|AIFF|WAV|VORBIS|FLAC|MPC|AC3|WAVPAC|ALAC|AAC|SHORTEN|SID|ADX|NSF|SPEEX|SPC|APE|WMA|WMAPRO|MOD|SAP|COOK|AAC|AC3|ATRAC3|CMC|CM3|CMR|CMS|DMC|DLT|MPT|MPD|RMT|TMC|TM8|TM2|ATRAC3|SMAF|AU|VOX|WAVE64|TRUEAUD|WMAVOX|MUSEPAK|AAC-HE|AY|VTX|GBS|HES|SGC|VGM|KSS|OPUS|AAC|UNKNOWN?>%Vs(invert);%t(8)%ac%?fv<~>%fbk%Vs(invert);%t(8)%ac%fkkHz%Vs(invert)
+
+#__Peak Meter Bars
+%Vl(MainDisplay,30,189,420,117,6)
+%pm
+
+#__Play/Pause Icons
+%V(30,321,31,16,-)
+%?mp<%xd(PBI,1)|%xd(PBI,2)|%xd(PBI,3)|%xd(PBI,4)|%xd(PBI,5)>
+
+#__Next Up Selector
+%?pE(20)<%?pS(10)<%Vd(curInfo)|%Vd(nextInfo)>|%Vd(curInfo)>
+
+#__Track Time / Playlist position / Playtime & (Manual/Auto) Score
+%Vl(curInfo,64,316,385,30,3)
+%al%pc-%pr%ac%?if(%pt, >, 35999)<|%pp-%pe>%ar%?if(%pe, >, 999)<%pR|%pL-%pR>
+
+#__Next Up
+%Vl(nextInfo,63,316,33,30,3)
+%ac→%Vs(invert)
+%Vl(nextInfo,96,316,352,30,3)
+%ac%s%?Ia<%Ia%?It< - %It>|%Fn> %Vs(invert)
+
+#-------- Lock Screen Layer -------#
+
+#__Username - Max 8 characters anything more will scroll
+%Vl(LockScreen,30,12,96,25,3)
+%al%sROCKBOX
+
+#__Hold
+%Vl(LockScreen,135,12,121,25,3)
+%?mh<%acLOCKED%Vs(invert)|>
+
+#__Repeat
+%Vl(LockScreen,330,16,31,18,-)
+%?and(%if(%ps, =, 1),%or(%if(%mm, =, 1),%if(%mm, >, 1)),%or(%if(%fc, !=, 4),%if(%fc, !=, 5),%if(%fc, !=, 7),%if(%fc, !=, 11),%if(%fc, !=, 13)))<%xd(shuffle,%ps)>
+%?and(%if(%ps, =, 1),%or(%if(%mm, =, 1),%if(%mm, >, 1)),%or(%if(%fc, =, 4),%if(%fc, =, 5),%if(%fc, =, 7),%if(%fc, =, 11),%if(%fc, =, 13)))<%xd(shuffle,%ps)>
+%?and(%if(%ps, !=, 1),%if(%mm, >, 1),%or(%if(%fc, !=, 4),%if(%fc, !=, 5),%if(%fc, !=, 7),%if(%fc, !=, 11),%if(%fc, !=, 13)))<%xd(repeat,%mm,-1)>
+
+#__Shuffle
+%Vl(LockScreen,288,16,31,16,-)
+%?and(%if(%ps, =, 1),%if(%mm, >, 1),%or(%if(%fc, =, 4),%if(%fc, =, 5),%if(%fc, =, 7),%if(%fc, =, 11),%if(%fc, =, 13)))<%xd(repeat,%mm)>
+%?and(%if(%ps, =, 1),%if(%mm, >, 1),%or(%if(%fc, !=, 4),%if(%fc, !=, 5),%if(%fc, !=, 7),%if(%fc, !=, 11),%if(%fc, !=, 13)))<%xd(repeat,%mm,-1)>
+
+#__Battery Text
+%Vl(LockScreen,397,12,52,30,3)
+%ar%bl%%
+
+#__Battery Icon
+%Vl(LockScreen,372,16,31,16,-)
+%?bp<%xd(Hl)|%?bl<%xd(Ha)|%xd(Hb)|%xd(Hc)|%xd(Hd)|%xd(He)|%xd(Hf)|%xd(Hg)|%xd(Hh)|%xd(Hi)|%xd(Hj)|%xd(Hk)>>
+
+#__Time
+%Vl(LockScreen,30,37,150,45,5)
+%al%?cf<%cH:%cM|%?cl<1|2|3|4|5|6|7|8|9|10|11|12>:%cM%cP>
+
+__Date
+%Vl(LockScreen,244,51,202,39,3)
+%ar%?cu<Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday>, %cb %cd
+
+#__Top Line
+%Vl(LockScreen,30,85,420,1,-)
+%dr(0,0,420,1)
+
+#__Artist
+%Vl(LockScreen,31,154,240,48,4)
+%ac%s%?ia<%ia|NO TAG>
+
+#__Track Title
+%Vl(LockScreen,31,198,240,25,3)
+%ac%s%?it<%it|%fn>
+
+#__Album Art
+%Vl(LockScreenA,276,103,171,171,-)
+%Cl(1,1,168,168,c,c)
+%dr(0,0,171,1)%dr(0,169,171,1)%dr(0,1,1,168)%dr(169,1,1,168)
+%Cd
+%Vl(LockScreenB,276,103,171,171,-)
+%xd(AlbumArt)
+
+#__Track Progress Bar
+%Vl(LockScreen,30,291,420,1,-)
+%dr(0,0,420,1)
+%Vl(LockScreen,30,292,420,7,-)
+%pb(0,0,420,7,PBB,slider,PB)
+%Vl(LockScreen,30,300,420,1,-)
+%dr(0,0,420,1)
