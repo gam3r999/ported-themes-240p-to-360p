@@ -1,0 +1,122 @@
+# Theme: Win95
+# Version: 1.0 (9/25/2024)
+# Device: iPod Video
+# License: CC-BY-SA
+# Creator: Vera B
+#
+#
+# Credits to other creators:
+# This theme wouldn't have been possible without the earlier work of:
+# creators of ipodmod3blk (K4sum1), ipodmod3blkfixed (Paul Sauro),
+# adwaitapod (evan Dook), iRetro (J Donsen), iPod reFresh (Ciprian Dragu)
+# For the WPS Player "CD Player" display, credits to u/opanic on Reddit
+# For the battery, hold, and disk access icons, credits to K4sum1
+# For the concept, credits to Microsoft.. but everyone already knows this lol
+# For the font, credits to Arne @ arnesava.com. Og font files can be found here:
+# https://arnesava.github.io/w95font/
+# Go listen to Andre Nickatina, The Pharcyde, Gangsta Pat, Tommy Wright III, Celly
+# Cel, Playa Fly, Al Kapone, Lil Keke, Geto Boys, Three 6 Mafia and Self Tightld,
+# who are my fav artists on my iPod that I feel deserve a shoutout!
+# Thank you so much for all the support this theme received on Reddit!
+# I hope you enjoy it :) <3
+# For suggestions/requests/other inquiries, dm me on Reddit: u/suzdali
+
+
+# Hide The Status Bar
+%wd
+
+# Load Backdrop
+%X(win95wps1.bmp)
+
+# Preload Fonts
+%Fl(2,14-W95font.fnt)
+%Fl(3,20-W95font.fnt)
+%Fl(4,16-W95font.fnt)
+%Fl(5,18-W95font.fnt)
+
+
+# Preload Images
+#%xl(A,aa.bmp,0,0)
+%xl(B,battery.bmp,0,0,24)
+%xl(C,win95pb.bmp,0,0)
+%xl(D,win95prog.bmp,0,0)
+%xl(E,win95ps.bmp,0,0)
+%xl(F,pbl.bmp,0,0)
+%xl(G,pbr.bmp,444,0)
+%xl(J,95mute.bmp,0,0,2)
+%xl(K,win95volback.bmp,0,0)
+%xl(L,win95vol.bmp,0,0)
+%xl(M,95shuffle.bmp,0,0)
+%xl(N,95repeat.bmp,0,0,5)
+%xl(O,Hold Icon - SBS.bmp,0,0)
+%xl(P,95largestatus.bmp,0,0,4)
+
+# Album Art Settings
+%Cl(0,0,67,67,c,c)
+# Album Art
+%V(144,103,67,67,-)
+%?C<%Cd>
+
+# Battery
+%V(369,337,28,15,-)
+%?bp<%?bc<%t(1.0)%xd(Ba);%t(1.0)%xd(Bb)|%xd(Bc)>|%?bl<%xd(Bd)|%xd(Bd)|%xd(Be)|%xd(Bf)|%xd(Bg)|%xd(Bh)|%xd(Bi)|%xd(Bj)|%xd(Bk)|%xd(Bl)|%xd(Bm)|%xd(Bn)|%xd(Bo)|%xd(Bp)|%xd(Bq)|%xd(Br)|%xd(Bs)|%xd(Bt)|%xd(Bu)|%xd(Bv)|%xd(Bw)|%xd(Bx)>>#
+
+# Battery text
+%V(315,336,48,21,2)%Vf(000000)%Vb(000000)
+%ar%bl%%
+#
+
+# Hold Icon
+%V(7,4,10,15,-)%Vf(F4F4F4)%Vb(000000)
+%?mh<%xd(O)|%?mr<%xd(O)>>
+
+
+# Time Bar
+%V(420,336,45,21,2)%Vf(000000)%Vb(000000)
+%s%al%?cf<%cH:%cM|%cl:%cM>
+
+
+# Title
+%V(138,229,225,33,4)%Vf(000000)
+%al%s%?it<%s%it|%fn>
+# Artist
+%V(138,192,225,33,4)%Vf(000000)
+%al%s%?ia<%ia|%?d(2)<%d(2)|%Sx(Artist)>>
+
+
+# Song Current Time
+%V(91,262,85,21,2)%Vf(000000)
+%al%pc
+# Song Remaining Time
+%V(367,262,85,21,2)%Vf(000000)
+%al%pt
+
+# Progress Bar
+# With a little hacking to make border look nice
+%V(130,258,228,22,-)
+%xd(F)
+%pb(3,0,222,22,C,backdrop,D,slider,E)
+%xd(G)
+
+# Repeat
+%V(367,105,30,27,-)
+%xd(N, %mm)
+# %?mm<%xd(Na)|%xd(Nb)|%xd(Nb)|%xd(Nb)|%xd(Nb)>
+
+# Shuffle
+%V(331,105,31,27,-)
+%?ps<%xd(M)>
+
+# Mute
+%V(7,330,24,24,-)
+%?pv<%xd(Jb)|%xd(Ja)|%xd(Ja)|%xd(Ja)>
+
+# Volume
+# With a little hacking to make border look nice
+%V(48,331,151,24,-)
+%pv(0,0,148,24,K,backdrop,L,slider,E)
+
+# Status icons
+%V(220,102,108,73,-)%Vf(ffffff)%Vb(F4F4F4)
+%?mp<|%xd(Pa)|%xd(Pb)|%xd(Pc)|%xd(Pd)||||>
+#
